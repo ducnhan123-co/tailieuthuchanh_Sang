@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phiếu đặt phòng</title>
+  </head>
+  <body>
+    <form name="frmPhieudatphong">
+      <fieldset>
+        <h2>Phiếu đặt phòng</h2>
+
+        <!-- Họ tên -->
+        <label for="txtHoten">Họ tên *</label><br />
+        <input type="text" id="txtHoten" name="txtHoten" /><br /><br />
+
+        <!-- Địa chỉ -->
+        <label for="txtDiachi">Địa chỉ</label><br />
+        <input type="text" id="txtDiachi" name="txtDiachi" /><br /><br />
+
+        <!-- CMND -->
+        <label for="txtcmnd">Số chứng minh nhân dân *</label><br />
+        <input type="text" id="txtcmnd" name="txtcmnd" /><br /><br />
+
+        <!-- Mức giá -->
+        <label for="cboMucgia">Mức giá</label><br />
+        <select name="cboMucgia" id="cboMucgia">
+          <option value="a">Loại thường</option>
+          <option value="b">Loại sang trọng</option>
+          <option value="c">Loại đặc biệt</option></select
+        ><br /><br />
+
+        <!-- Ngày thuê -->
+        <label for="dateNgaythue">Ngày thuê</label><br />
+        <input type="date" id="dateNgaythue" name="dateNgaythue" /><br /><br />
+
+        <!-- Ngày trả -->
+        <label for="dateNgaytra">Ngày trả</label><br />
+        <input type="date" id="dateNgaytra" name="dateNgaytra" /><br /><br />
+
+        <!-- Dịch vụ đi kèm -->
+        <label>Dịch vụ đi kèm</label><br />
+        <input type="checkbox" id="chkAnsang" name="chkAnsang" /> Ăn sáng<br />
+        <input type="checkbox" id="chkGiatUi" name="chkGiatUi" /> Giặt ủi<br />
+        <input type="checkbox" id="chkBaoSang" name="chkBaoSang" /> Báo buổi
+        sáng<br /><br />
+
+        <!-- Tiền thuê phòng -->
+        <label for="txtTienthuephong">Tiền thuê phòng</label><br />
+        <input
+          type="text"
+          id="txtTienthuephong"
+          name="txtTienthuephong"
+          readonly
+        />
+        VND<br /><br />
+
+        <!-- Buttons -->
+        <button type="button" id="btnTinhdongia">Tính đơn giá</button>
+        <button type="submit" id="subDangky">Đăng ký</button>
+      </fieldset>
+    </form>
+
+    <!-- JavaScript -->
+    <script>
+      // Lấy các phần tử DOM
+      const txtHoten = document.getElementById("txtHoten");
+      const txtcmnd = document.getElementById("txtcmnd");
+      const cboMucgia = document.getElementById("cboMucgia");
+      const dateNgaythue = document.getElementById("dateNgaythue");
+      const dateNgaytra = document.getElementById("dateNgaytra");
+      const chkAnsang = document.getElementById("chkAnsang");
+      const chkGiatUi = document.getElementById("chkGiatUi");
+      const chkBaoSang = document.getElementById("chkBaoSang");
+      const txtTienthuephong = document.getElementById("txtTienthuephong");
+      const btnTinhdongia = document.getElementById("btnTinhdongia");
+      const form = document.forms["frmPhieudatphong"];
+
+      // Kiểm tra dữ liệu khi nhấn nút Đăng ký
+      form.onsubmit = (event) => {
+        // Kiểm tra Họ tên
+        if (txtHoten.value.trim() === "") {
+          alert("Họ tên không được rỗng");
+          txtHoten.focus();
+          event.preventDefault();
+          return;
+        }
+
+        // Kiểm tra CMND
+        if (txtcmnd.value.trim() === "") {
+          alert("CMND không được rỗng");
+          txtcmnd.focus();
+          event.preventDefault();
+          return;
+        }
+        if (isNaN(txtcmnd.value)) {
+          alert("CMND phải là số");
+          txtcmnd.focus();
+          event.preventDefault();
+          return;
+        }
+
+        // Kiểm tra Mức giá và dịch vụ
+        if (
+          (cboMucgia.value === "b" || cboMucgia.value === "c") &&
+          !chkAnsang.checked
+        ) {
+          alert(
+            "Mức giá sang trọng và đặc biệt bắt buộc phải có dịch vụ ăn sáng"
+          );
+          event.preventDefault();
+          return;
+        }
+      };
+
+      // Xử lý Tính đơn giá
+      btnTinhdongia.onclick = () => {
+        if (!dateNgaythue.value || !dateNgaytra.value) {
+          alert("Ngày thuê và ngày trả không được để trống!");
+          return;
+        }
+
+        const ngayThue = new Date(dateNgaythue.value);
+        const ngayTra = new Date(dateNgaytra.value);
+
+        if (ngayThue >= ngayTra) {
+          alert("Ngày trả phải sau ngày thuê");
+          return;
+        }
+
+        const days = Math.ceil((ngayTra - ngayThue) / (1000 * 60 * 60 * 24)); // Số ngày thuê
+
+        // Tính giá
+        let pricePerDay =
+          cboMucgia.value === "a"
+            ? 150000
+            : cboMucgia.value === "b"
+            ? 300000
+            : 500000;
+        let extraServiceFee = 0;
+
+        if (cboMucgia.value === "a") {
+          if (chkAnsang.checked) extraServiceFee += pricePerDay * 0.05;
+          if (chkGiatUi.checked) extraServiceFee += pricePerDay * 0.05;
+          if (chkBaoSang.checked) extraServiceFee += pricePerDay * 0.05;
+        } else {
+          if (chkGiatUi.checked) extraServiceFee += pricePerDay * 0.05;
+          if (chkBaoSang.checked) extraServiceFee += pricePerDay * 0.05;
+        }
+
+        const totalPrice = (pricePerDay + extraServiceFee) * days;
+        txtTienthuephong.value = totalPrice.toFixed(0);
+      };
+    </script>
+  </body>
+</html>

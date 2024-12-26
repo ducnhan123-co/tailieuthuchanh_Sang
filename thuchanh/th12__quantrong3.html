@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form so thich(2023-2024)</title>
+  </head>
+  <body>
+    <form action="xuly.php" method="get" name="form1">
+      So thich:
+      <select name="cboSoThich" id="" onchange="changeCheckBox(this);">
+        <option value="boi_loi">Boi loi</option>
+        <option value="vo_thuat">Vo thuat</option>
+        <option value="" selected>Chon so thich</option>
+      </select>
+      <div id="checkBoxHTML">
+        <input type="checkbox" name="chk1" value="buom" />
+        Boi buom
+        <input type="checkbox" name="chk2" value="sai" />
+        Boi Sai
+      </div>
+      <br />
+      <hr />
+      <br />
+      <input type="radio" name="rdTraLoi" value="chon" checked="checked" onclick="changeForRadio(this)" />
+      Chon cau hoi
+      <input type="radio" name="rdTraLoi" value="nhap" onclick="changeForRadio(this)" />
+      Nhap cau hoi
+      <br />
+      Cau hoi
+      <select name="cboCauHoi" id="">
+        <option value="-1">Chon cau hoi</option>
+        <option value="1">Cau hoi 1</option>
+        <option value="2">Cau hoi 2</option>
+      </select>
+      <input type="text" value="Nhap cau hoi" name="txtCauHoi" readonly="readonly" />
+    </form>
+  </body>
+  <script>
+    function changeCheckBox(cboSoThich) {
+      var sSoThich = cboSoThich.value;
+      var s;
+      switch (sSoThich) {
+        case "boi_loi":
+          s = phatSinhCheckBoxBoiLoi();
+          break;
+        case "vo_thuat":
+          s = phatSinhCheckBoxVoThuat();
+          break;
+        default:
+          s = "";
+          break;
+      }
+      var objCheckBoxHtml = document.getElementById("checkBoxHTML");
+      objCheckBoxHtml.innerHTML = s;
+    }
+
+    function phatSinhCheckBoxBoiLoi() {
+      var kq1 = `<input name="chk1" type="checkbox" value="buom" />Boi buom
+      <input name="chk2" type="checkbox" value="sai" />Boi sai
+      <input name="chk3" type="checkbox" value="cho" />Boi cho
+      `;
+      return kq1;
+    }
+
+    function phatSinhCheckBoxVoThuat() {
+      var kq2 = `<input name="chk1" type="checkbox" value="karate" />Karate
+      <input name="chk2" type="checkbox" value="judo" />Judo
+    
+      `;
+      return kq2;
+    }
+
+    function changeForRadio(objRadio) {
+      var cboCauHoi = document.form1.cboCauHoi;
+      var txtCauHoi = document.form1.txtCauHoi;
+      switch (objRadio.value) {
+        case "chon":
+          cboCauHoi.disabled = false;
+          txtCauHoi.readOnly = true;
+          cboCauHoi.focus();
+          break;
+        case "nhap":
+          cboCauHoi.disabled = true;
+          txtCauHoi.readOnly = false;
+          txtCauHoi.focus();
+          txtCauHoi.select();
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+</html>

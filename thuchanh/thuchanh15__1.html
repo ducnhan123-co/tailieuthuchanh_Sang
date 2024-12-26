@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: red;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: none; /* Không chặn các sự kiện chuột */
+    }
+  </style>
+  <body onload="startTime()">
+    <!-- bai 1  -->
+    <a href="lienket.html" onclick="return xacnhan()">liên kết</a>
+    <br />
+    <br />
+    <!-- bai 2 -->
+    <input type="radio" name="gender" value="nam" onclick="xacnhanCheckBox(this)" />
+    Nam
+    <input type="radio" name="gender" value="nu" onclick="xacnhanCheckBox(this)" />
+    Nu
+    <br />
+    <!-- bai 3  -->
+    <p>Trang 1</p>
+    <a href="lktrang2">lien ket trang 2</a>
+    <br />
+    <!-- bai 4  -->
+
+    <a href="#" id="trangTruoc" onclick="return trangTruoc()">back</a>
+    <br />
+    <!-- bai 5 -->
+    <div id="bai5"></div>
+
+    <!-- bai 6  -->
+    <div id="bai6"></div>
+    <!-- bai 7  -->
+    <label for="bai7">
+      <span id="phutgiay">00:00</span>
+      <br />
+      <input type="button" id="bai7" value="batDau" onclick="return batDau(this)" />
+      <input type="button" id="bai7_stop " value="dungLai" onclick="return dungLai(this)" />
+      <input type="button" id="bai7_reset" value="datlai" onclick="return datlai(this)" />
+    </label>
+    <br />
+    <br />
+    <!-- bai 8  -->
+    <label for="name">
+      Nhap ten
+      <input type="text" name="name" id="name" value="" />
+    </label>
+    <br />
+    <label for="ngaysinh">
+      Nhap ngay sinh
+      <input type="text" name="ngaysinh" id="ngaysinh" value="" />
+    </label>
+    <br />
+    <button type="button" onclick="check_up()">Kiem tra</button>
+    <br />
+    <br />
+    <!-- bai 9 -->
+    <form action="#" name="frmDangKyThanhVien" method="get" onsubmit="return check_upForm()">
+      <label for="nameF">
+        Ten thanh vien
+        <input type="text" id="nameF" value="" placeholder="Nhap ten thanh vien" />
+      </label>
+      <br />
+      <label for="ngaysinhF">
+        Ngay sinh
+        <input type="text" id="ngaysinhF" value="" placeholder="Nhap ngay sinh" />
+      </label>
+      <br />
+      <label for="diachiF">
+        Dia chi
+        <input type="text" id="diachiF" value="" placeholder="Nhap dia chi" />
+      </label>
+      <br />
+      <label for="sodienthoaiF">
+        So dien thoai
+        <input type="text" id="sodienthoaiF" value="" placeholder="Nhap so dien thoai" />
+      </label>
+      <br />
+      <label for="txtUserNameF">
+        Ten dang nhap
+        <input type="text" id="txtUserNameF" value="" placeholder="Nhap ten dang nhap " />
+      </label>
+      <br />
+      <label for="txtPassWordF">
+        Mat khau
+        <input type="password" id="txtPassWordF" value="" placeholder="Nhap mat khau " />
+      </label>
+      <br />
+      <label for="txtPassWordLaiF">
+        Nhap lai mat khau
+        <input type="password" id="txtPassWordLaiF" value="" placeholder="Xac nhan mat khau" />
+      </label>
+      <br />
+      <input type="submit" />
+    </form>
+
+    <!-- bai 10  -->
+    <p id="bai10"></p>
+    <p id="bai10.2"></p>
+    <div class="circle" id="circle"></div>
+  </body>
+  <script>
+    function xacnhan() {
+      var xacNhan = confirm("Ban muon mo lien ket");
+      if (xacNhan) {
+        document.getElementsByTagName("a").click();
+      } else {
+        return false;
+      }
+    }
+    function xacnhanCheckBox(objRadio) {
+      var rNam = objRadio.value;
+      setTimeout(() => {
+        switch (rNam) {
+          case "nam":
+            alert("Bạn đã chọn: Nam."); // Hiển thị thông báo
+            break;
+          case "nu":
+            alert("Bạn đã chọn: Nữ."); // Hiển thị thông báo
+            break;
+        }
+      }, 0);
+    }
+    // window.onload = function () {
+    //   alert("Chao ban");
+    // };
+    function trangTruoc() {
+      alert("Chao tam biet");
+      return false; // Ngăn chặn hành động mặc định của liên kết
+    }
+
+    var bai5 = document.getElementById("bai5");
+    var d = new Date();
+    var kq = `Hom nay : Thu nam ngay ${d.getDate()} thang ${d.getMonth()} nam ${d.getFullYear()} gio ${d.getHours()} phut ${d.getMinutes()} giay ${d.getSeconds()}`;
+    bai5.innerHTML = kq;
+
+    var bai6 = document.getElementById("bai6");
+    function startTime() {
+      var d = new Date();
+      var h = d.getHours();
+      var m = d.getMinutes();
+      var s = d.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      bai6.innerHTML = `${h}: ${m}: ${s}`;
+      setTimeout(startTime, 1000);
+    }
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+
+    let minutesB = 0;
+    let secondsB = 0;
+    let intervalB = null;
+    function capNhapThoiGian() {
+      let hienThiPhut = minutesB < 10 ? "0" + minutesB : minutesB;
+      let hienThiGiay = secondsB < 10 ? "0" + secondsB : secondsB;
+      document.getElementById("phutgiay").textContent = `${hienThiPhut}:${hienThiGiay}`;
+    }
+    function batDau() {
+      if (intervalB != null) {
+        return;
+      }
+      intervalB = setInterval(() => {
+        secondsB++;
+        if (secondsB == 60) {
+          secondsB = 0;
+          minutesB++;
+        }
+        capNhapThoiGian();
+      }, 1000);
+    }
+    function dungLai() {
+      clearInterval(intervalB);
+      intervalB = null;
+    }
+    function datlai() {
+      dungLai();
+      minutesB = 0;
+      secondsB = 0;
+      capNhapThoiGian();
+    }
+
+    function check_up() {
+      // event.preventDefault();
+      if (document.getElementById("name").value === "") {
+        alert("Nhap lai");
+        document.getElementById("name").focus();
+        return false;
+      }
+      if (document.getElementById("ngaysinh").value === "") {
+        alert("Nhap lai");
+        document.getElementById("ngaysinh").focus();
+        return false;
+      }
+      alert("Dữ liệu hợp lệ!");
+      return true;
+    }
+
+    function check_upForm() {
+      if (document.getElementById("nameF").value === "") {
+        alert("Name null");
+        document.getElementById("nameF").focus();
+        return false;
+      }
+      if (document.getElementById("ngaysinhF").value === "") {
+        alert("ngay sinh null");
+        document.getElementById("ngaysinhF").focus();
+        return false;
+      }
+      if (document.getElementById("diachiF").value === "") {
+        alert("dia chi null");
+        document.getElementById("diachiF").focus();
+        return false;
+      }
+      if (document.getElementById("sodienthoaiF").value === "") {
+        alert("so dien thoai null");
+        document.getElementById("sodienthoaiF").focus();
+        return false;
+      }
+      if (document.frmDangKyThanhVien.txtUserNameF.value === "") {
+        alert("ten dang nhap null");
+        document.getElementById("txtUserNameF").focus();
+        return false;
+      }
+
+      if (document.frmDangKyThanhVien.txtPassWordF.value === "") {
+        alert("mat khau");
+        document.getElementById("txtUserNameF").focus();
+        return false;
+      }
+      if (document.frmDangKyThanhVien.txtPassWordF.value != document.frmDangKyThanhVien.txtPassWordLaiF.value) {
+        alert("Nhap dung mat khau ");
+        document.getElementById("txtPassWordLaiF").focus();
+        return false;
+      }
+      alert("Dung thong tin");
+      return true;
+    }
+
+    function taoSoNgauNhien(n) {
+      // Tạo số nguyên ngẫu nhiên từ 0 đến n
+      return Math.floor(Math.random() * (n + 1)); // Thêm 1 để bao gồm cả n
+    }
+    let n = prompt("Nhập vào một số nguyên n:");
+    // Kiểm tra giá trị n có hợp lệ không
+    if (isNaN(n) || n === "" || n === null || n < 0) {
+      document.getElementById("bai10").innerHTML = "Vui lòng nhập một số nguyên hợp lệ!";
+    } else {
+      let x = taoSoNgauNhien(Number(n));
+      document.getElementById("bai10").innerHTML = `Số ngẫu nhiên từ 0 đến ${n} là: ${x}`;
+    }
+
+    function taoSoThucNgauNhien(n) {
+      // Tạo số thực ngẫu nhiên từ 0 đến n
+      return Math.random() * n;
+    }
+
+    // Nhập n từ người dùng
+    let thuc = prompt("Nhập vào một số N:");
+
+    // Kiểm tra giá trị n có hợp lệ không
+    if (isNaN(thuc) || thuc === "" || thuc === null || thuc <= 0) {
+      document.getElementById("bai10.2").innerHTML = "Vui lòng nhập một số lớn hơn 0!";
+    } else {
+      let x = taoSoThucNgauNhien(Number(n));
+      document.getElementById("bai10.2").innerHTML = `Số thực ngẫu nhiên từ 0 đến ${n} là: ${x}`;
+    }
+    const circle = document.getElementById("circle");
+
+    // Lắng nghe sự kiện di chuyển chuột
+    document.addEventListener("mousemove", (e) => {
+      // Lấy tọa độ chuột
+      const mouseX = e.pageX;
+      const mouseY = e.pageY;
+
+      // Di chuyển hình tròn tới vị trí chuột
+      circle.style.left = `${mouseX}px`;
+      circle.style.top = `${mouseY}px`;
+    });
+  </script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thuc hanh 1</title>
+  </head>
+  <body>
+    <center>
+      <form action="" name="lcm_gcd">
+        <table border="1">
+          <tr>
+            <td colspan="2" align="center">Tinh uoc chung boi chung</td>
+          </tr>
+          <tr>
+            <td width="200">
+              So thu 1
+              <br />
+              <input type="text" name="a" id="" />
+            </td>
+            <td width="200">
+              So thu 2
+              <br />
+              <input type="text" name="b" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="button" value="Tinh" onclick="getLCM()" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Boi chung nho nhat
+              <br />
+              <input type="text" name="lcmA" />
+            </td>
+            <td>
+              Uoc chung lon nhat
+              <br />
+              <input type="text" name="gcdA" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </center>
+  </body>
+  <script>
+    function getGCD() {
+      var w, x, y;
+      x = document.lcm_gcd.a.value;
+      y = document.lcm_gcd.b.value;
+      while (y != 0) {
+        w = x % y;
+        x = y;
+        y = w;
+      }
+      return x;
+    }
+    function getLCM() {
+      var gcd = getGCD();
+      var lcm = (document.lcm_gcd.a.value * document.lcm_gcd.b.value) / gcd;
+      document.lcm_gcd.lcmA.value = lcm;
+      document.lcm_gcd.gcdA.value = gcd;
+    }
+  </script>
+</html>

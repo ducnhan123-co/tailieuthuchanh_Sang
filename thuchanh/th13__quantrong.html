@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Valid</title>
+  </head>
+  <body>
+    <div id="user" class="modal">
+      <div id="signup">
+        <form action="" id="signupform" name="frmregister" onsubmit="return check_signup()">
+          <button type="button" class="close">x</button>
+          <h2>Dang ky</h2>
+          <div class="signupinfo">
+            <div class="col">
+              <label for="fullname">Ho va ten:</label>
+              <input type="text" id="fullname" />
+              <div id="fullnameerror">Ban chua nhap ho ten</div>
+              <input type="text" id="address" />
+              <div id="addresserror">Ban chua nhap dia chi</div>
+              <label for="phone">So dien thoai</label>
+              <input type="text" id="phone" name="txtphone" />
+              <div id="phoneerror">Ban chua nhap so dien thoai</div>
+            </div>
+            <div class="col">
+              <label for="usernameSignUp">Ten dang nhap</label>
+              <input type="text" id="usernameSignUp" />
+              <div id="usererror" name="txtusername">Ban chua nhap ten dang nhap</div>
+              <label for="passwordSignUp">Mat khau:</label>
+              <input type="password" id="passwordSignUp" name="txtpassword" />
+              <div id="passworderror">Ban chua nhap mat khau</div>
+              <label for="passwordSignUp2">Nhap lai mat khau</label>
+              <input type="password" id="passwordSignUp2" name="txttrepassword" />
+              <div id="password2error">Mat khau khong trung khop</div>
+            </div>
+          </div>
+          <button type="submit" id="btnsignup">Dang ky</button>
+          <p>
+            Tro ve trang
+            <a href="#">Dang nhap</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    function check_signup() {
+      if (document.getElementById("fullname").value == "") {
+        alert("full name null");
+        document.getElementById("fullname").focus();
+        return false;
+      }
+      if (document.getElementById("address").value == "") {
+        alert("address null");
+        document.getElementById("address").focus();
+        return false;
+      }
+      if (document.frmregister.txtphone.value == "") {
+        alert("phone null");
+        document.frmregister.txtphone.focus();
+        return false;
+      }
+      if (document.frmregister.txtusername.value == "") {
+        alert("username null");
+        document.frmregister.txtusername.focus();
+        return false;
+      }
+      if (document.frmregister.txtpassword.value == "") {
+        alert("password null");
+        document.frmregister.txtpassword.focus();
+        return false;
+      }
+      if (document.frmregister.txtpassword.value != document.frmregister.txttrepassword.value) {
+        alert("password do not match");
+        document.firstChild.txttrepassword.focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
+</html>

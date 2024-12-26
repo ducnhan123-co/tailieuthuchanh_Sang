@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>giao dien ban hoa</title>
+    <style>
+      * {
+        /* border: 1px solid black; */
+      }
+      label {
+        display: block;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+      }
+      div.fl {
+        float: left;
+        margin-right: 0.6em;
+      }
+      select.hoa {
+        width: 8em;
+      }
+      select.date {
+        width: 4em;
+      }
+
+      input[type="text"] {
+        width: 5em;
+      }
+      div#mainForm {
+        border: 1;
+      }
+      div#submit {
+        padding-top: 0.2em;
+        clear: both;
+      }
+      div.sep {
+        float: left;
+        margin-left: 0em;
+        margin-right: 0.6em;
+        padding-top: 1.8em;
+      }
+      div.simple {
+        float: left;
+        padding-top: 0.5em;
+      }
+      fieldset {
+        width: 17em;
+        margin-bottom: 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <div id="mainForm">
+        <fieldset>
+          <legend>Thong tin mua hoa</legend>
+          <div>
+            <label for="from">Loai hoa:</label>
+            <select name="Flower" class="hoa">
+              <option value="-1">Chon hoa</option>
+              <option value="Rose">Hoa hong</option>
+              <option value="Daisy">Hoa cuc</option>
+              <option value="Tup" selected>Hoa tulip</option>
+              <option value="Lyly">Hoa lyly</option>
+            </select>
+          </div>
+          <div class="fl">
+            <label for="color">Mau hoa:</label>
+            <select name="Color" class="hoa">
+              <option value="-1">Chon mau</option>
+              <option value="Yellow">Mau vang</option>
+              <option value="Red">Do</option>
+              <option value="White">Trang</option>
+              <option value="Black" selected>Den</option>
+            </select>
+          </div>
+          <div class="fl">
+            <label for="quantity">So luong:</label>
+            <input type="radio" name="optUnit" checked />Bo
+            <input type="radio" name="optUnit" /> Canh
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Trang tri</legend>
+          <div class="fl">
+            <input type="checkbox" name="chkwrap" checked /> Goi giay
+            <input type="checkbox" name="chknote" /> Ghi loi chuc
+          </div>
+          <div class="fl">
+            <textarea name="1stNote" cols="30" rows="4" id="">
+<Ghi loi chuc mung></textarea
+            >
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Ngay giao:</legend>
+          <div class="fl">
+            <label for="Month">Thang:</label>
+            <select name="Month" id="" class="">
+              <option value="1">Thang 1</option>
+              <option value="2">Thang 2</option>
+              <option value="3" selected>Thang 3</option>
+            </select>
+          </div>
+          <div class="sep"></div>
+          <div class="fl">
+            <label for="Day">Ngay</label>
+            <select name="Day" id="Day">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>30</option>
+            </select>
+          </div>
+          <div class="sep"></div>
+          <div class="fl">
+            <label for="Year">Nam</label>
+            <select name="Year" id="" class="date">
+              <option value="2021">2021</option>
+              <option value="2022" selected>2022</option>
+              <option value="2023">2023</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset id="price">
+          <legend>Thanh tien:</legend>
+          <label for="tinh tien">1,000,000 VND</label>
+          <div id="submit">
+            <input type="button" value="Tinh tien" />
+            <input type="submit" value="Buoc ke tiep" />
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </body>
+</html>

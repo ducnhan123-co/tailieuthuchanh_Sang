@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" name="form1">
+      <label for="sothich">Sở thích</label>
+      <select name="cbosothich" id="sothic">
+        <option value="1">Chọn sở thích</option>
+        <option value="2">Thể thao</option>
+        <option value="3">Võ thuật</option>
+      </select>
+      <div id="hienthithongtin">
+        <!-- Nội dung hiển thị sẽ thay đổi ở đây -->
+      </div>
+    </form>
+  </body>
+  <script>
+    // Lấy thẻ select và div hiển thị nội dung
+    const sothich = document.getElementById("sothic");
+    const hienthi = document.getElementById("hienthithongtin");
+
+    // Lắng nghe sự kiện khi người dùng thay đổi lựa chọn trong combobox
+    sothich.addEventListener("change", function () {
+      // Xóa nội dung cũ
+      hienthi.innerHTML = "";
+
+      // Kiểm tra lựa chọn và thay đổi nội dung hiển thị
+      if (sothich.value == "2") {
+        // Nội dung cho Thể thao
+        hienthi.innerHTML = `
+          <input type="checkbox" name="chk1" id="chk1" /> Bóng bàn<br>
+          <input type="checkbox" name="chk2" id="chk2" /> Cầu lông<br>
+          <input type="checkbox" name="chk3" id="chk3" /> Bóng đá<br>
+        `;
+      } else if (sothich.value == "3") {
+        // Nội dung cho Võ thuật
+        hienthi.innerHTML = `
+          <input type="checkbox" name="chk1" id="chk1" /> Karate<br>
+          <input type="checkbox" name="chk2" id="chk2" /> Judo<br>
+          <input type="checkbox" name="chk3" id="chk3" /> Taekwondo<br>
+        `;
+      } else {
+        // Trường hợp không chọn hoặc chọn "Chọn sở thích"
+        hienthi.innerHTML = "Vui lòng chọn một sở thích!";
+      }
+    });
+  </script>
+</html>

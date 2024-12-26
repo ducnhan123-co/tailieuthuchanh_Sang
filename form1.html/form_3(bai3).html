@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bai3</title>
+  </head>
+  <body>
+    <center>
+      <form action="" name="frmDangky">
+        <h2>Dang ky tai khoan</h2>
+        <label for="tendangnhap">Ten dang nhap</label> <br />
+        <input type="text" name="txtTendangnhap" id="tendangnhap" /> <br />
+        <label for="matkhau">Mat khau</label> <br />
+        <input type="text" name="txtMatkhau" id="matkhau" /> <br />
+        <label for="xacnhanmatkhau">Xac nhan mat khau</label> <br />
+        <input type="text" name="txtXacnhanmatkhau" id="xacnhanmatkhau" />
+        <br />
+        <label for="sodienthoai">So dien thoai</label> <br />
+        <input type="text" name="txtDienthoai" id="sodienthoai" /> <br />
+        <label for="diachi">Dia chi</label> <br />
+        <input type="text" name="txtDiachi" id="diachi" /> <br />
+        <br />
+
+        <button type="submit" name="btnTaotaikhoan" onclick="send(event)">
+          Tao tai khoan
+        </button>
+      </form>
+    </center>
+  </body>
+  <script>
+    var styleLabel = document.getElementsByTagName("label");
+    for (let i = 0; i < styleLabel.length; i++) {
+      //   styleLabel[i].style.position = "absolute";
+      //   styleLabel[i].style.left = "50%";
+    }
+    function send(event) {
+      event.preventDefault();
+      var arrInput = document.getElementsByTagName("input");
+      console.log(arrInput);
+      var checkTen = arrInput[0].value.trim();
+      var checkMk = arrInput[1].value.trim();
+      var checkXacNhanMK = arrInput[2].value.trim();
+      var checkSdt = arrInput[3].value.trim();
+      var checkDiaChi = arrInput[4].value.trim();
+      if (checkTen == "") {
+        alert("Ten dang nhap khong duoc de trong");
+        arrInput[0].focus();
+        return;
+      }
+      if (checkTen.length === 8) {
+        var chk2Kytudau = checkTen.slice(0, 2);
+        var chk6Kytuconlai = checkTen.slice(2);
+        if (chk2Kytudau !== "SV" || isNaN(chk6Kytuconlai)) {
+          alert("Khong dung dinh dang ten dang nhap");
+          arrInput[0].focus();
+          return;
+        }
+        if (checkMk.length < 6) {
+          alert("Mat khau toi thieu 6 ky tu.");
+          arrInput[1].focus();
+          return;
+        }
+        if (checkMk != checkXacNhanMK) {
+          alert("Mat khau va xac nhan mat khau phai trung nhau");
+          arrInput[2].focus();
+          return;
+        }
+        if (checkSdt == "") {
+          alert("So dien thoai khong duoc rong.");
+          arrInput[3].focus();
+          return;
+        }
+        if (checkSdt.length === 10) {
+          var chkSobatdau = checkSdt.slice(0, 1);
+          var chkSoconlai = checkSdt.slice(1);
+          if (chkSobatdau != "0" || isNaN(chkSoconlai)) {
+            alert("Sai dinh dang so dien thoai");
+            arrInput[3].focus();
+            return;
+          }
+        } else {
+          alert("So dien thoai phai co 10 ky tu");
+          arrInput[3].focus();
+          return;
+        }
+      } else {
+        alert("Ten dang nhap phai co dung 8 ky tu");
+        arrInput[0].focus();
+      }
+
+      alert("Tao tai khoan thanh cong");
+    }
+  </script>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bai 3 luyen tap css</title>
+  </head>
+  <style>
+    body {
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    ul,
+    li {
+      margin: 0px 0px;
+      padding: 0px 0px;
+    }
+    #topmenu {
+    }
+    #topmenu ul {
+      margin-top: 0px;
+      width: 100%;
+    }
+    #topmenu li {
+      list-style-position: inside;
+      display: inline;
+      border: solid 1px #ec797b;
+      margin-right: 15px;
+    }
+    #topmenu li:first-child {
+      margin-left: 15px;
+    }
+    .menu {
+      background-color: #f3e6e7;
+    }
+    .menu ul {
+      margin-top: 0px;
+      width: 100%;
+    }
+    .menu li {
+      list-style-position: inside;
+      border: solid 1px #ec797b;
+    }
+  </style>
+  <body>
+    <div style="width: 90%; border: solid 10px #0cf459; margin: 0 auto">
+      <div style="margin: 5px 5px; border: #0df367 solid 2px; height: 150; position: relative">
+        <img
+          src="https://ttcntt.sgu.edu.vn/wp-content/uploads/2018/11/SGU-LOGO.png"
+          alt=""
+          width="150"
+          height="150"
+          style="margin-left: 50px"
+        />
+        <p style="position: absolute; left: 250px; top: 20px">Phat trien ung dung web 1</p>
+      </div>
+      <div id="topmenu" style="margin: 5px 5px; border: #0df367 solid 2px; height: 30px; line-height: 30px">
+        <ul>
+          <li>
+            <a href="#">Trang chu</a>
+          </li>
+          <li>
+            <a href="#">Gioi thieu</a>
+          </li>
+          <li>
+            <a href="#">Thong tin tuyen sinh</a>
+          </li>
+          <li>
+            <a href="#">Thong tin dao tao</a>
+          </li>
+          <li>
+            <a href="#">Lien he</a>
+          </li>
+        </ul>
+      </div>
+      <div style="margin: 5px 5px; height: auto; border: #0df367 solid 2px; height: 150px; overflow: hidden">
+        <div class="menu" style="width: 20%; border: solid 2px #f7081e; float: left">
+          <ul type="square">
+            <li>
+              <a href="#">Trang chu</a>
+            </li>
+            <li>
+              <a href="#">Gioi thieu</a>
+            </li>
+            <li>
+              <a href="#">Thong tin tuyen sinh</a>
+            </li>
+            <li>
+              <a href="#">Thong tin dao tao</a>
+            </li>
+            <li>
+              <a href="#">Lien he</a>
+            </li>
+          </ul>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+        <div style="width: 20%; float: left; width: 59%; padding-left: 10px">
+          <p>Content</p>
+        </div>
+        <div style="width: 19%; border: solid 2px #f7081e; float: right">
+          <p>right</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div style="margin: 5px 5px; border: #0df367 solid 1px; height: 150px; clear: both">
+        <p>Footer</p>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </body>
+</html>

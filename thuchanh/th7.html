@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thuc hanh z-index</title>
+  </head>
+  <style>
+    .demo {
+      width: 50%;
+      height: 300px;
+      border: #000000 solid 2px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .red,
+    .green,
+    .blue {
+      width: 100px;
+      height: 100px;
+      color: black;
+    }
+    .red {
+      background: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    .green {
+      background: green;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      z-index: 30;
+    }
+    .blue {
+      background: blue;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      z-index: 80;
+    }
+  </style>
+  <body>
+    <div class="demo">
+      <div class="red">red</div>
+      <div class="green">green</div>
+      <div class="blue">blue</div>
+    </div>
+  </body>
+</html>

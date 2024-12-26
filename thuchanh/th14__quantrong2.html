@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* CSS giữ nguyên */
+      body {
+        margin: 0 10px;
+      }
+      ul {
+        margin-top: 0px;
+      }
+      .menu li a {
+        color: #ffffff;
+      }
+      .menu li {
+        margin-right: 0px;
+        margin-top: 0px;
+        padding-top: 0px;
+        background-color: #669966;
+        font-size: 20px;
+        display: inline-table;
+        height: 30px;
+        line-height: 40px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .menu li:hover {
+        background-color: #ff0000;
+        font-style: italic;
+      }
+      .leftmenu {
+        font-size: 14px;
+        color: #ffffff;
+        background-color: #66cc66;
+        font-size: 16px;
+      }
+      .leftmenu a {
+        text-decoration: none;
+        color: #0000ff;
+      }
+      .leftmenu ul {
+        list-style: hiragana;
+        list-style-position: inside;
+      }
+      .leftmenu li {
+        display: list-item;
+        background-color: #33cc66;
+        border: #ff0000 solid 2px;
+        margin-left: -40px;
+        padding-left: 15px;
+      }
+      .leftmenu li:hover {
+        background-color: #ffffff;
+      }
+      .leftmenu div {
+        border: solid #ff0000 2px;
+        border-radius: 15px;
+      }
+      .leftmenu div div:hover {
+        background-color: #996666;
+      }
+      #content {
+        background-color: #669999;
+        height: 600px;
+        border: #ff0000 solid 2px;
+      }
+      .divproduct:first-child {
+        background-color: #99ff00;
+        margin-left: 45px;
+      }
+      .divproduct {
+        width: 19%;
+        height: 250px;
+        border: #ff0000 solid 3px;
+        float: left;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-right: 15px;
+        margin-left: 30px;
+      }
+      #pagenumber {
+        text-align: center;
+        background-color: #ffff00;
+        width: 100%;
+        border: #996600 solid 2px;
+        height: 45px;
+        display: inline-table;
+        text-align: center;
+      }
+      #pagenumber div {
+        width: 40px;
+        height: 40px;
+        background-color: #99ff00;
+        display: inline-table;
+        line-height: 40px;
+        border: #0000ff solid 2px;
+      }
+      #pagenumber div:hover {
+        background-color: #ff0000;
+      }
+      #homepage {
+        width: 100%;
+        height: 600px;
+      }
+      #slideshow {
+        width: 100%;
+        height: 300px;
+        border: #ff0000 solid 2px;
+        position: relative;
+        background-color: #99ff00;
+        z-index: 10;
+      }
+      #imgnext {
+        background-color: #ffffff;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 40%;
+        z-index: 20;
+      }
+      #imgpre {
+        background-color: #ffffff;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        top: 40%;
+        z-index: 20;
+      }
+    </style>
+  </head>
+  <body leftmargin="0">
+    <script>
+      window.onload = function () {
+        create_menu();
+      };
+    </script>
+    <div style="border: 3px solid #990033; border-radius: 15px"></div>
+    <div style="width: 100%; height: 150px; background-color: #333300; position: relative">
+      header
+      <div style="position: absolute; top: 50px; left: 270px; font-size: 36px; color: #ffffff; font-style: oblique">
+        Vi tri bat ky
+      </div>
+      <img
+        src=""
+        alt=""
+        style="
+          border-radius: 100%;
+          width: 100px;
+          height: 100px;
+          position: absolute;
+          border: #ff0000 solid 5px;
+          top: 30px;
+          left: 150px;
+        "
+      />
+    </div>
+    <div class="menu" style="width: 100%; background-color: #ccff00; height: 40px">
+      <ul>
+        <a href="#">
+          <li id="tc" onclick="show1(this)">Trang chu</li>
+        </a>
+        <a href="#">
+          <li id="gt" onclick="show1(this)">Gioi thieu</li>
+        </a>
+        <a href="#">
+          <li id="tv" onclick="show1(this)">Tu van</li>
+        </a>
+        <a href="#">
+          <li id="lh" onclick="show1(this)">Lien he</li>
+        </a>
+      </ul>
+    </div>
+    <div>
+      <div class="leftmenu" style="float: left; width: 20%; background-color: #339933">
+        <div style="margin-top: 0px; list-style-type: disc">
+          <ul id="javascriptmenu">
+            <!-- Menu sẽ được tạo bằng JavaScript -->
+          </ul>
+        </div>
+      </div>
+      <div style="float: left; width: 80%; background-color: #009999">
+        <div id="content">
+          <div style="width: 100%; border: #0000ff solid 3px" align="center">
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div style="clear: both"></div>
+          </div>
+          <div style="width: 100%; border: #0000ff solid 3px" align="center">
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div style="clear: both"></div>
+          </div>
+        </div>
+        <div id="pagenumber" style="clear: both" align="center">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+    <div style="width: 100%; height: 150px; background-color: #ff0000">footer</div>
+    <script>
+      function create_menu() {
+        var product = ["May tinh asus", "May tinh HP", "May tinh Lenovo", "May tinh Dell", "May tinh Fujitsu"];
+        var s = "";
+        for (var i = 0; i < product.length; i++) {
+          var a = '<a href="position.html?' + i + '"><li onclick="show1(this);">' + product[i] + "</li></a>";
+          s += a;
+        }
+        s = "<ul>" + s + "</ul>";
+        document.getElementById("javascriptmenu").innerHTML = s;
+      }
+      function show1(obj) {
+        var a = obj;
+        switch (a.id) {
+          case "tc":
+            // Render lại giao diện trang chủ, bao gồm sản phẩm
+            document.getElementById("content").innerHTML = `
+        <div id="homepage">
+
+          <div style="width: 100%; border: #0000ff solid 3px" align="center">
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div style="clear: both"></div>
+          </div>
+          <div style="width: 100%; border: #0000ff solid 3px" align="center">
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div class="divproduct"></div>
+            <div style="clear: both"></div>
+          </div>
+        </div>
+      `;
+            break;
+          case "gt":
+            document.getElementById("content").innerHTML = "<div>Ban chon gioi thieu</div>";
+            break;
+          case "tv":
+            document.getElementById("content").innerHTML = "<div>Ban chon tu van</div>";
+            break;
+          case "lh":
+            document.getElementById("content").innerHTML = "<div>Ban chon lien he</div>";
+            break;
+          default:
+            document.getElementById("content").innerHTML = "";
+            break;
+        }
+      }
+
+      function show_menu() {
+        var url = window.location.href;
+        var id = url.split("?")[1];
+        id = parseInt(id);
+        switch (id) {
+          case 0:
+            document.getElementById("content").innerHTML = "<div>May tinh Asus</div>";
+            break;
+          case 1:
+            document.getElementById("content").innerHTML = "<div>May tinh HP</div>";
+            break;
+          case 2:
+            document.getElementById("content").innerHTML = "<div>May tinh Lenovo</div>";
+            break;
+          case 3:
+            document.getElementById("content").innerHTML = "<div>May tinh Dell</div>";
+            break;
+          case 4:
+            document.getElementById("content").innerHTML = "<div>May tinh Fujitsu</div>";
+            break;
+          default:
+            document.getElementById("content").innerHTML = "<div>Khong tim thay san pham</div>";
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

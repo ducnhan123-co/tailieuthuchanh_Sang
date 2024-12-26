@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @keyframes example {
+      from {
+        top: 0px;
+      }
+      to {
+        top: 200px;
+        background-color: #ccff66;
+      }
+    }
+
+    #wrapper {
+      width: 500px;
+      margin: auto;
+      background-color: #339900;
+      border-radius: 15px;
+      overflow: hidden;
+      /* height: 300px; */
+      animation: example;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
+    #content {
+      background-color: #ff9900;
+      width: 100%;
+    }
+    .left {
+      background-color: #ccff00;
+      width: 47%;
+      float: left;
+      height: 250px;
+      padding-left: 15px;
+    }
+    .right {
+      background-color: #66ffff;
+      width: 47%;
+      float: right;
+      height: 250px;
+      padding-left: 15px;
+    }
+    .footer {
+      background-color: #ff6600;
+      clear: both;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      height: 25px;
+      border-radius: 5px;
+      size: 40;
+      border: #ff0000 solid 2px;
+      margin-top: 5px;
+    }
+    input[type="password"] {
+      height: 25px;
+      border-radius: 5px;
+      size: 40;
+      border: #ff0000 solid 2px;
+    }
+    input[type="submit"],
+    [type="button"] {
+      border-radius: 15px;
+      background-color: #33cc00;
+      height: 30px;
+      width: 150px;
+    }
+    input[type="radio"] {
+      border-radius: 15px;
+      background-color: #33cc00;
+    }
+
+    input[type="button"]:hover,
+    [type="submit"]:hover {
+      background-color: #ff0000;
+    }
+
+    p {
+      margin: 0px;
+      margin-top: 5px;
+    }
+    .close {
+      position: absolute;
+      font-size: 16px;
+      top: 0px;
+      right: 0px;
+      background-color: #ff0000;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+    .close:hover {
+      background-color: #66ff33;
+    }
+  </style>
+  <body>
+    <div>
+      <form action="Formregister.html" name="frmregister" method="get" onsubmit="return check_signup();">
+        <div id="wrapper" style="position: relative">
+          <div style="width: 100%; height: 60px; background: #efc4c4">
+            <marquee
+              behavior="alternate"
+              direction=""
+              id="title"
+              align="left"
+              loop="3"
+              style="margin-right: 60px; height: 60px; line-height: 60px"
+            >
+              Dang ky
+            </marquee>
+            <div class="close" onclick="close_registration()">
+              <a href="#">X</a>
+            </div>
+          </div>
+          <div id="content">
+            <div class="left">
+              <p>Ho va ten</p>
+              <input type="text" id="name" value="" name="txtname" placeholder="Nhap vao ho ten" />
+              <p>Dia chi</p>
+              <input type="text" id="address" value="" name="txtaddress" maxlength="5" placeholder="Input Address" />
+              <p>Dien thoai</p>
+              <input type="text" id="phone" value="" name="txtphone" placeholder="Input phone number" />
+              <p>Gioi tinh</p>
+              <input type="radio" id="gender_male" name="rdsex" value="nam" />
+              <span style="font-size: 16px">Male</span>
+              <input type="radio" id="gender_Femal" name="rdsex" value="nu" />
+              <span style="font-size: 16px">Female</span>
+            </div>
+            <div class="right">
+              <p>Ten dang nhap</p>
+              <input type="text" value="" size="20" name="txtusername" />
+              <p>Mat khau</p>
+              <input type="text" value="" size="20" name="txtpassword" />
+              <p>Mat khau lai</p>
+              <input type="text" value="" size="20" name="txttrepassword" />
+            </div>
+            <div class="footer">
+              <input type="submit" value="Dang ky" />
+              <input type="submit" value="Thay doi gia tri" onclick="change_value()" />
+              <input type="button" value="Thay doi vi tri" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    var count = 0;
+    function change_position() {
+      if (count % 3 == 0) {
+        document.getElementById("title").style.textAlign = "center";
+        count++;
+      } else if (count % 3 == 1) {
+        document.getElementById("title").style.textAlign = "right";
+        count++;
+      } else if (count % 3 == 2) {
+        document.getElementById("title").style.textAlign = "left";
+        count++;
+      } else if (count == 5) {
+        count = 0;
+      }
+    }
+
+    function close_frmregister() {
+      document.getElementById("wrapper").style.display = "none";
+    }
+
+    function change_value() {
+      document
+        .getElementById("title")
+        .setAttribute("style", "width: 100%; height:40px;padding-top:15px;position:relative;background-color:red;");
+    }
+    function check_signup() {
+      if (document.getElementById("name").value == "") {
+        alert("name null");
+        document.getElementById("name").focus();
+        return false;
+      }
+      if (document.getElementById("address").value == "") {
+        alert("address null");
+        document.getElementById("address").focus();
+        return false;
+      }
+      if (document.frmregister.txtphone.value == "") {
+        alert("phone null");
+        document.frmregister.txtphone.focus();
+        return false;
+      }
+      if (document.frmregister.txtusername.value == "") {
+        alert("username null");
+        document.frmregister.txtusername.focus();
+        return false;
+      }
+      if (document.frmregister.txtpassword.value == "") {
+        alert("password null");
+        document.frmregister.txtpassword.focus();
+        return false;
+      }
+      if (document.frmregister.txtpassword.value != document.frmregister.txttrepassword.value) {
+        alert("ko khop");
+        document.frmregister.txttrepassword.focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
+</html>

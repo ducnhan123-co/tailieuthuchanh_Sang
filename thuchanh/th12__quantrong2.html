@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dien tich cac hinh</title>
+  </head>
+  <body>
+    <center>
+      <form action="" name="calcarea">
+        Tinh dien tich cua
+        <table border="1">
+          <tr>
+            <td>
+              <select name="shape" id="" size="1" onchange="calcarea.area.value=doArea(selectedIndex);">
+                <option>Chon lua</option>
+                <option value="square">Hinh vuong</option>
+                <option value="triangle">Hinh tam giac</option>
+                <option value="rectangle">Hinh chu nhat</option>
+                <option value="circle">Hinh tron</option>
+                <option value="sphere">Hinh ovan</option>
+              </select>
+            </td>
+            <td>
+              <input type="text" name="area" size="20" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </center>
+  </body>
+  <script>
+    function doArea(num) {
+      switch (num) {
+        case 0:
+          return "";
+          break;
+        case 1:
+          var length = prompt("Nhap canh hinh vuong: ");
+          length = length * length;
+          return length;
+          break;
+        case 2:
+          var width = prompt("Nhap canh tam giac: ");
+          var height = prompt("Nhap chieu cao tam giac: ");
+          return (width * height) / 2;
+          break;
+        case 3:
+          var chieudai = prompt("Nhap chieu dai hinh chu nhat:");
+          var chieurong = prompt("Nhap chieu rong hinh chu nhat: ");
+          return chieudai * chieurong;
+          break;
+        case 4:
+          var bktron = prompt("Nhap ban kinh hinh tron:");
+          return Math.PI * Math.pow(bktron, 2);
+          break;
+        case 5:
+          var bkelip = prompt("Nhap ban kinh elip:");
+          return 4 * Math.PI * Math.pow(bkelip, 2);
+          break;
+      }
+    }
+  </script>
+</html>
