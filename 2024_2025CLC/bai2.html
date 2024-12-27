@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fibonacci</title>
+  </head>
+  <body>
+    <label for="num">
+      Nhập n:
+      <input type="number" id="num" />
+    </label>
+    <button onclick="inFibo()">In dãy Fibonacci</button>
+  </body>
+  <script>
+    function inFibo() {
+      var n = parseInt(document.getElementById("num").value.trim());
+
+      // Kiểm tra giá trị nhập vào
+      if (isNaN(n) || n <= 0) {
+        alert("Vui lòng nhập số nguyên dương!");
+        return;
+      }
+
+      // Tạo mảng Fibonacci
+      var F = [1, 1];
+      for (var i = 2; i < n + 2; i++) {
+        F[i] = F[i - 1] + F[i - 2];
+      }
+
+      // Ghi ra kết quả bằng document.write
+      document.write("n số Fibonacci tiếp theo là: <ul>");
+      for (var i = 2; i < n + 2; i++) {
+        document.write(`<li>${F[i]}</li>`);
+      }
+      document.write("</ul>");
+    }
+  </script>
+</html>

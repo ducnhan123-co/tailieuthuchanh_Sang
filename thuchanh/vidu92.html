@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ví dụ trang 92</title>
+  </head>
+  <body>
+    <form action="" method="post" name="form1">
+      <center>
+        <h3>Mời nhập thông tin</h3>
+        <table border="0" width="50%">
+          <tr>
+            <td align="top">Địa chỉ email</td>
+            <td>
+              <input type="text" name="diachi" />
+            </td>
+          </tr>
+          <tr>
+            <td align="top">Phái</td>
+            <td id="phai"></td>
+          </tr>
+          <tr>
+            <td align="top">Nghề nghiệp</td>
+            <td id="nghenghiep"></td>
+          </tr>
+        </table>
+        <br />
+        <input type="button" value="Đăng ký" align="left" onclick="return kiemtra()" />
+      </center>
+    </form>
+    <script>
+      var ketqua;
+      var phai = ["Nữ", "Nam"];
+      var nghenghiep = ["Sinh viên", "Kỹ sư", "Giáo viên", "Khác"];
+
+      // Hàm tạo radio button
+      function TaoRadio(ten, mang) {
+        var s = "";
+        for (var i = 0; i < mang.length; i++) {
+          s += `<input name="${ten}" type="radio" value="${mang[i]}" /> ${mang[i]}<br>`;
+        }
+        return s;
+      }
+
+      // Hàm tạo dropdown (select)
+      function TaoSelect(ten, mang) {
+        var s = `<select name="${ten}">`;
+        for (var i = 0; i < mang.length; i++) {
+          s += `<option value="${mang[i]}">${mang[i]}</option>`;
+        }
+        s += "</select>";
+        return s;
+      }
+
+      // Gán nội dung các phần tử HTML
+      document.getElementById("phai").innerHTML = TaoRadio("p", phai);
+      document.getElementById("nghenghiep").innerHTML = TaoSelect("n", nghenghiep);
+
+      // Kiểm tra địa chỉ email
+      function ktDiaChi() {
+        if (document.form1.diachi.value == "") {
+          alert("Bạn chưa nhập email!");
+          return false;
+        }
+        if (document.form1.diachi.value.indexOf("@") == -1) {
+          alert("Email không hợp lệ!");
+          return false;
+        }
+        ketqua += "Địa chỉ email: " + document.form1.diachi.value + "\n";
+        return true;
+      }
+
+      // Kiểm tra phái
+      function ktPhai() {
+        var j = -1;
+        var radios = document.form1.p; // Lấy danh sách radio button
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            j = i;
+            break;
+          }
+        }
+        if (j == -1) {
+          alert("Bạn chưa chọn phái!");
+          return false;
+        }
+        ketqua += "Bạn là phái: " + radios[j].value + "\n";
+        return true;
+      }
+
+      // Kiểm tra nghề nghiệp
+      function ktNgheNghiep() {
+        var t = document.form1.n.selectedIndex; // Lấy chỉ mục được chọn
+        ketqua += "Làm nghề: " + document.form1.n.options[t].value + "\n";
+        return true;
+      }
+
+      // Hàm kiểm tra toàn bộ form
+      function kiemtra() {
+        ketqua = "";
+        if (!ktDiaChi()) return false;
+        if (!ktPhai()) return false;
+        ktNgheNghiep();
+        alert(ketqua);
+        return true;
+      }
+    </script>
+  </body>
+</html>
